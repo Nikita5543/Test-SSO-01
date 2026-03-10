@@ -71,7 +71,6 @@ async def initialize_default_admin(db: Session = Depends(get_db)):
     Initialize default admin user (admin/admin).
     Only creates user if no admin exists.
     """
-<<<<<<< HEAD
     try:
         admin = UserService.create_default_admin(db)
         return {
@@ -87,11 +86,3 @@ async def initialize_default_admin(db: Session = Depends(get_db)):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Failed to initialize admin: {str(e)}"
         )
-=======
-    admin = UserService.create_default_admin(db)
-    return {
-        "message": "Default admin user created",
-        "username": admin.username,
-        "note": "Default credentials: admin / admin"
-    }
->>>>>>> 4b53791c5685844be2a4aa25a49786fc81abbe07
