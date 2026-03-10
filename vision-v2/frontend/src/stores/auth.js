@@ -15,12 +15,16 @@ export const useAuthStore = defineStore('auth', () => {
     error.value = null
 
     try {
+      const formData = new URLSearchParams()
+      formData.append('username', credentials.username)
+      formData.append('password', credentials.password)
+
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: JSON.stringify(credentials)
+        body: formData
       })
 
       const data = await response.json()
