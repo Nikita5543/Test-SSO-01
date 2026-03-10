@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     
     # CORS
+<<<<<<< HEAD
     ALLOWED_ORIGINS: List[str] = [
         "http://localhost:3000",
         "http://localhost:5173",
@@ -21,6 +22,9 @@ class Settings(BaseSettings):
         "http://91.240.254.18:8000",
         "http://91.240.254.18:8001",
     ]
+=======
+    ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173"]
+>>>>>>> 4b53791c5685844be2a4aa25a49786fc81abbe07
     
     # Application
     DEBUG: bool = True
