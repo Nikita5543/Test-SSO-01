@@ -1,0 +1,54 @@
+Summary
+1. Python Script for BGP Prefix-list Update
+Location: C:\Users\Admin\Documents\noc-vision\python scripts\bgp_prefixlist_updater.pyThe script includes:
+Bgpq4Runner class - Runs bgpq4 utility to generate prefix-lists from ASN data
+JuniperNetconfClient class - Handles NETCONF connections to Juniper MX devices
+BgpPrefixListUpdater class - Main orchestrator that combines bgpq4 generation with device configuration
+update_bgp_prefix_list() function - Programmatic API for calling from FastAPI
+Features:
+Generates prefix-lists using bgpq4 from any ASN
+Connects to Juniper MX via NETCONF (port 830)
+Supports both IPv4 and IPv6 protocols
+Configurable max prefix limit
+Full error handling and logging
+2. FastAPI Backend Endpoints
+Files created:
+backend/app/schemas/bgp.py - Pydantic schemas for requests/responses
+backend/app/api/v1/endpoints/bgp.py - API endpoints
+Endpoints:
+GET /api/v1/bgp/devices - List available Juniper MX devices
+POST /api/v1/bgp/update-prefix-list - Execute prefix-list update
+GET /api/v1/bgp/devices/{device_id} - Get specific device details
+Dependencies added to requirements.txt:
+ncclient==0.6.15 - NETCONF client library
+lxml==5.1.0 - XML processing
+3. Frontend Pages
+Files created/modified:
+frontend/src/views/configuration/BGPPrefixList.vue - New BGP prefix-list management page
+frontend/src/views/configuration/ConfigurationManager.vue - Updated with navigation card
+frontend/src/router/index.js - Added route for new page
+Features:
+Device selection dropdown
+ASN input field
+Prefix-list name input
+Protocol selection (IPv4/IPv6)
+Max prefixes limit (optional)
+Real-time result display with generated prefixes
+List of available devices
+How to Use
+Install bgpq4 on your system: https://github.com/bgp/bgpq4
+Install Python dependencies:
+bash
+pip install ncclient lxml
+Run the backend:
+bash
+cd backend
+pip install -r requirements.txt
+python run.py
+Run the frontend:
+bash
+cd frontend
+npm install
+npm run dev
+Access the page: Navigate to Configuration Manager → BGP Prefix-list
+The system uses sample devices (defined in bgp.py). In production, you should replace the SAMPLE_DEVICES array with a database-backed device management system
