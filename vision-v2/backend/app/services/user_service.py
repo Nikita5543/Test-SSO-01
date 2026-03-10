@@ -115,7 +115,7 @@ class UserService:
         if not admin:
             admin = User(
                 username="admin",
-                email="admin@nocvision.local",
+                email="admin@nocvision.com",
                 full_name="Administrator",
                 hashed_password=get_password_hash("admin"),
                 role="admin",
@@ -124,4 +124,10 @@ class UserService:
             db.add(admin)
             db.commit()
             db.refresh(admin)
+        else:
+            # Update email if it's invalid
+            if admin.email == "admin@nocvision.local":
+                admin.email = "admin@nocvision.com"
+                db.commit()
+                db.refresh(admin)
         return admin
